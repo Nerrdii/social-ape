@@ -8,7 +8,11 @@ firebase.initializeApp(config);
 
 const app = express();
 
-const { getAllScreams, createScream } = require('./handlers/screams');
+const {
+  getAllScreams,
+  getScream,
+  createScream
+} = require('./handlers/screams');
 const {
   signup,
   login,
@@ -18,6 +22,7 @@ const {
 } = require('./handlers/users');
 
 app.get('/screams', getAllScreams);
+app.get('/screams/:id', getScream);
 app.post('/screams', fbAuth, createScream);
 app.post('/signup', signup);
 app.post('/login', login);

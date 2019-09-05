@@ -20,6 +20,41 @@ exports.getAllScreams = (req, res) => {
     .catch(err => console.error(err));
 };
 
+exports.getScream = (req, res) => {
+  let screamData = {};
+
+  db.doc(`/screams/${req.params.id}`)
+    .get()
+    .then(doc => {
+      if (!doc.exists) {
+        return res.status(404).json({ error: 'Scream not found' });
+      }
+
+      screamData = doc.data();
+      screamData.screamId = doc.id;
+
+      return db
+        .collection('comments')
+        .where('screamId', '==', req.params.id)
+        .orderBy('createdAt', 'desc')
+        .get();
+    })
+    .then(data => {
+      screamData.comments = [];
+
+      data.forEach(doc => {
+        screamData.comments.push(doc.data());
+      });
+
+      return res.json(screamData);
+    })
+    .catch(err => {
+      console.error(err);
+
+      return res.status(500).json({ error: err.code });
+    });
+};
+
 exports.createScream = (req, res) => {
   if (req.body.body.trim() === '') {
     return res.status(400).json({ body: 'Must not be empty' });

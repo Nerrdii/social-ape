@@ -11,7 +11,8 @@ const app = express();
 const {
   getAllScreams,
   getScream,
-  createScream
+  createScream,
+  createComment
 } = require('./handlers/screams');
 const {
   signup,
@@ -24,6 +25,7 @@ const {
 app.get('/screams', getAllScreams);
 app.get('/screams/:id', getScream);
 app.post('/screams', fbAuth, createScream);
+app.post('/screams/:id/comments', fbAuth, createComment);
 app.post('/signup', signup);
 app.post('/login', login);
 app.get('/user', fbAuth, getUser);

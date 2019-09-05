@@ -76,3 +76,35 @@ exports.createScream = (req, res) => {
       console.error(err);
     });
 };
+
+exports.createComment = (req, res) => {
+  if (req.body.body.trim() === '') {
+    return res.status(400).json({ comment: 'Must not be empty' });
+  }
+
+  const newComment = {
+    body: req.body.body,
+    createdAt: new Date().toISOString(),
+    screamId: req.params.id,
+    userHandle: req.user.handle,
+    userImage: req.user.imageUrl
+  };
+
+  db.doc(`/screams/${req.params.id}`)
+    .get()
+    .then(doc => {
+      if (!doc.exists) {
+        return res.status(404).json({ error: 'Scream not found' });
+      }
+
+      return db.collection('comments').add(newComment);
+    })
+    .then(() => {
+      return res.json(newComment);
+    })
+    .catch(err => {
+      console.error(err);
+
+      return res.status(500).json({ error: err.code });
+    });
+};

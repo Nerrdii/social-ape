@@ -12,7 +12,10 @@ const {
   getAllScreams,
   getScream,
   createScream,
-  createComment
+  deleteScream,
+  createComment,
+  likeScream,
+  unlikeScream
 } = require('./handlers/screams');
 const {
   signup,
@@ -25,7 +28,10 @@ const {
 app.get('/screams', getAllScreams);
 app.get('/screams/:id', getScream);
 app.post('/screams', fbAuth, createScream);
+app.delete('/screams/:id', fbAuth, deleteScream);
 app.post('/screams/:id/comments', fbAuth, createComment);
+app.get('/screams/:id/like', fbAuth, likeScream);
+app.get('/screams/:id/unlike', fbAuth, unlikeScream);
 app.post('/signup', signup);
 app.post('/login', login);
 app.get('/user', fbAuth, getUser);

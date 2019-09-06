@@ -21,9 +21,11 @@ const {
 const {
   signup,
   login,
-  getUser,
+  getAuthenticatedUser,
+  getUserDetails,
   addUserDetails,
-  uploadImage
+  uploadImage,
+  markNotifications
 } = require('./handlers/users');
 
 app.get('/screams', getAllScreams);
@@ -35,9 +37,11 @@ app.get('/screams/:id/like', fbAuth, likeScream);
 app.get('/screams/:id/unlike', fbAuth, unlikeScream);
 app.post('/signup', signup);
 app.post('/login', login);
-app.get('/user', fbAuth, getUser);
+app.get('/user', fbAuth, getAuthenticatedUser);
+app.get('/user/:handle', getUserDetails);
 app.post('/user', fbAuth, addUserDetails);
 app.post('/user/image', fbAuth, uploadImage);
+app.post('/notifications', fbAuth, markNotifications);
 
 exports.api = functions.https.onRequest(app);
 

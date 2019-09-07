@@ -10,32 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import icon from '../images/icon.png';
 
-const styles = {
-  form: {
-    textAlign: 'center'
-  },
-  image: {
-    margin: '20px auto 20px auto'
-  },
-  pageTitle: {
-    margin: '10px auto 10px auto'
-  },
-  textField: {
-    margin: '10px auto 10px auto'
-  },
-  button: {
-    marginTop: 20,
-    position: 'relative'
-  },
-  customError: {
-    color: 'red',
-    fontSize: '0.8rem',
-    marginTop: 10
-  },
-  progress: {
-    position: 'absolute'
-  }
-};
+const styles = theme => ({
+  ...theme.customStyles
+});
 
 class login extends Component {
   state = {
@@ -57,6 +34,7 @@ class login extends Component {
       .post('/login', userData)
       .then(res => {
         console.log(res.data);
+        localStorage.setItem('fbIdToken', `Bearer ${res.data.token}`);
         this.setState({ loading: false });
 
         this.props.history.push('/');

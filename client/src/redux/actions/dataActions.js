@@ -6,9 +6,11 @@ import {
   UNLIKE_SCREAM,
   DELETE_SCREAM,
   LOADING_UI,
+  STOP_LOADING_UI,
   POST_SCREAM,
   SET_ERRORS,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  SET_SCREAM
 } from '../types';
 
 export const getScreams = () => dispatch => {
@@ -21,6 +23,17 @@ export const getScreams = () => dispatch => {
     .catch(() => {
       dispatch({ type: SET_SCREAMS, payload: [] });
     });
+};
+
+export const getScream = screamId => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/screams/${screamId}`)
+    .then(res => {
+      dispatch({ type: SET_SCREAM, payload: res.data });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch(err => console.log(err));
 };
 
 export const postScream = newScream => dispatch => {

@@ -13,6 +13,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import DeleteScream from './DeleteScream';
+import ScreamDialog from './ScreamDialog';
 import MyButton from '../utils/MyButton';
 import { likeScream, unlikeScream } from '../redux/actions/dataActions';
 
@@ -115,6 +116,7 @@ class Scream extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
+          <ScreamDialog screamId={screamId} userHandle={userHandle} />
         </CardContent>
       </Card>
     );

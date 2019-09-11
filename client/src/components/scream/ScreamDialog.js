@@ -13,15 +13,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import ChatIcon from '@material-ui/icons/Chat';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 import MyButton from '../../utils/MyButton';
 import { getScream } from '../../redux/actions/dataActions';
 
 const styles = theme => ({
   ...theme.customStyles,
-  invisibleSeparator: {
-    border: 'none',
-    margin: 4
-  },
   profileImage: {
     maxWidth: 200,
     height: 200,
@@ -71,7 +68,8 @@ class ScreamDialog extends Component {
         likeCount,
         commentCount,
         userImage,
-        userHandle
+        userHandle,
+        comments
       },
       ui: { loading }
     } = this.props;
@@ -106,6 +104,8 @@ class ScreamDialog extends Component {
           </MyButton>
           <span>{commentCount} comments</span>
         </Grid>
+        <hr className={classes.visibleSeparator} />
+        <Comments comments={comments} />
       </Grid>
     );
 

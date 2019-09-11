@@ -3,7 +3,8 @@ import {
   SET_SCREAMS,
   LOADING_DATA,
   LIKE_SCREAM,
-  UNLIKE_SCREAM
+  UNLIKE_SCREAM,
+  DELETE_SCREAM
 } from '../types';
 
 export const getScreams = () => dispatch => {
@@ -32,6 +33,15 @@ export const unlikeScream = screamId => dispatch => {
     .get(`/screams/${screamId}/unlike`)
     .then(res => {
       dispatch({ type: UNLIKE_SCREAM, payload: res.data });
+    })
+    .catch(err => console.log(err));
+};
+
+export const deleteScream = screamId => dispatch => {
+  axios
+    .delete(`/screams/${screamId}`)
+    .then(() => {
+      dispatch({ type: DELETE_SCREAM, payload: screamId });
     })
     .catch(err => console.log(err));
 };

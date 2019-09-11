@@ -14,8 +14,9 @@ import ChatIcon from '@material-ui/icons/Chat';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 import MyButton from '../../utils/MyButton';
-import { getScream } from '../../redux/actions/dataActions';
+import { getScream, clearErrors } from '../../redux/actions/dataActions';
 
 const styles = theme => ({
   ...theme.customStyles,
@@ -56,6 +57,7 @@ class ScreamDialog extends Component {
 
   handleClose = () => {
     this.setState({ open: false, errors: {} });
+    this.props.clearErrors();
   };
 
   render() {
@@ -105,6 +107,7 @@ class ScreamDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
+        <CommentForm screamId={screamId} />
         <Comments comments={comments} />
       </Grid>
     );
@@ -142,7 +145,8 @@ ScreamDialog.propTypes = {
   screamId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
   scream: PropTypes.object.isRequired,
-  ui: PropTypes.object.isRequired
+  ui: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -151,7 +155,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  getScream
+  getScream,
+  clearErrors
 };
 
 export default connect(

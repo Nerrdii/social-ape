@@ -7,7 +7,16 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-  ...theme.customStyles
+  ...theme.customStyles,
+  commentImage: {
+    maxWidth: '100%',
+    height: 100,
+    objectFit: 'cover',
+    borderRadius: '50%'
+  },
+  commentData: {
+    marginLeft: 20
+  }
 });
 
 class Comments extends Component {
@@ -16,7 +25,7 @@ class Comments extends Component {
 
     return (
       <Grid container>
-        {comments.map(comment => {
+        {comments.map((comment, index) => {
           const { body, createdAt, userImage, userHandle } = comment;
           return (
             <Fragment key={createdAt}>
@@ -42,10 +51,14 @@ class Comments extends Component {
                         {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                       </Typography>
                       <hr className={classes.invisibleSeparator} />
+                      <Typography variant="body1">{body}</Typography>
                     </div>
                   </Grid>
                 </Grid>
               </Grid>
+              {index !== comments.length - 1 && (
+                <hr className={classes.visibleSeparator} />
+              )}
             </Fragment>
           );
         })}

@@ -8,7 +8,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import AuthRoute from './utils/AuthRoute';
 import customTheme from './utils/theme';
 import store from './redux/store';

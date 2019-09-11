@@ -13,8 +13,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import ChatIcon from '@material-ui/icons/Chat';
 import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import LikeButton from './LikeButton';
-import MyButton from '../utils/MyButton';
-import { getScream } from '../redux/actions/dataActions';
+import MyButton from '../../utils/MyButton';
+import { getScream } from '../../redux/actions/dataActions';
 
 const styles = theme => ({
   ...theme.customStyles,

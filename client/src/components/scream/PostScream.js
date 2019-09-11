@@ -10,8 +10,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
-import MyButton from '../utils/MyButton';
-import { postScream, clearErrors } from '../redux/actions/dataActions';
+import MyButton from '../../utils/MyButton';
+import { postScream, clearErrors } from '../../redux/actions/dataActions';
 
 const styles = theme => ({
   ...theme.customStyles,

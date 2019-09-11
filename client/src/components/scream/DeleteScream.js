@@ -7,8 +7,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import MyButton from '../utils/MyButton';
-import { deleteScream } from '../redux/actions/dataActions';
+import MyButton from '../../utils/MyButton';
+import { deleteScream } from '../../redux/actions/dataActions';
 
 const styles = {
   deleteButton: {

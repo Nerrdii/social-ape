@@ -13,7 +13,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
 import LikeButton from './LikeButton';
-import MyButton from '../utils/MyButton';
+import MyButton from '../../utils/MyButton';
 
 const styles = {
   card: {

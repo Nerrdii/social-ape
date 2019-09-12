@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const firebase = require('firebase');
 const express = require('express');
+const cors = require('cors');
 const { db } = require('./utils/admin');
 const config = require('./utils/config');
 const fbAuth = require('./utils/fbAuth');
@@ -8,6 +9,8 @@ const fbAuth = require('./utils/fbAuth');
 firebase.initializeApp(config);
 
 const app = express();
+
+app.use(cors());
 
 const {
   getAllScreams,

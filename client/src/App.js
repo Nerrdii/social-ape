@@ -19,6 +19,9 @@ import './App.css';
 
 const theme = createMuiTheme(customTheme);
 
+axios.defaults.baseURL =
+  'https://us-central1-social-ape-97c74.cloudfunctions.net/api';
+
 const token = localStorage.getItem('fbIdToken');
 
 if (token) {
